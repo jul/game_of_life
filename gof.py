@@ -36,7 +36,7 @@ for time in range(20):
     n_grid = grid.copy()
     for x in range(X):
         for y in range(Y):
-            if n_grid.get(x,y):
+            if grid.get(x,y):
                 ##alive
                 n_grid.set(x,y, int(grid.nb_neighbour(x,y) in [ 2, 3] ))
             else:
