@@ -56,8 +56,6 @@ class matrix:
             for y in range(self.size_y):
                 if (y==0):
                     to_print+="\n%3d " % x
-                print "%d %d" % (x,y)
-                print self._oneD_offset(x,y)
                 cur_val=self.get(x,y)
                 to_print+=" "
                 to_print+="%3s" % ( str( cur_val ) if cur_val else "." )
