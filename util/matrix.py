@@ -46,15 +46,15 @@ class matrix:
         return new_matrix
     
     def __str__(self):
-        to_print="     " 
-        to_print+=" ".join([ "%3d" % x for x in range(self.size_y) ])
+        to_print="    " 
+        to_print+=" ".join([ "%2d" % x for x in range(self.size_y) ])
         for x in range(self.size_x):
             for y in range(self.size_y):
                 if (y==0):
-                    to_print+="\n%3d " % x
+                    to_print+="\n%2d " % x
                 cur_val=self.get(x,y)
                 to_print+=" "
-                to_print+="%3s" % ( str( cur_val ) if cur_val else "." )
+                to_print+="%2s" % ( str( cur_val ) if cur_val else "." )
         return to_print
 
 def matrix_check():
