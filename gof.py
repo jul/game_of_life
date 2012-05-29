@@ -3,8 +3,8 @@ from util.matrix import matrix
 import os
 from time import sleep
 
-X=10
-Y=10
+X=12
+Y=8
 grid = matrix(X,Y, 0)
 
 oscill = False
@@ -41,7 +41,7 @@ for time in range(100):
     n_grid = grid.copy()
     for x in range(X):
         for y in range(Y):
-            if grid.get(x,y):
+            if n_grid.get(x,y):
                 ##alive
                 n_grid.set(x,y, int(grid.nb_neighbour(x,y) in [ 2, 3] ))
             else:
