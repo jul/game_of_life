@@ -32,7 +32,7 @@ while True:
     n_grid = grid.copy()
     for x in range(X):
         for y in range(Y):
-            if n_grid.get(x, y) is ALIVE:
+            if grid.get(x, y) is ALIVE:
                 n_grid.set(x, y, int(grid.nb_living_around(x, y) in [2, 3]))
             else:
                 n_grid.set(x, y, int(grid.nb_living_around(x, y) == 3))
