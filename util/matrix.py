@@ -2,9 +2,6 @@
 # -*- coding: utf-8 -*-
 
 class matrix:
-    matrix=[]
-    size_x=None
-    size_y=None
 
     def as_table(self):
         return self.matrix
