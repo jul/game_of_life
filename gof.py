@@ -7,7 +7,12 @@ X = 12
 Y = 18
 DEAD = 0
 ALIVE = 1
-grid = matrix(X, Y, DEAD)
+
+#grid = matrix(X, Y, bytearray(X*Y))
+#from numpy import array,zeros
+#grid = matrix(X, Y, zeros(X*Y))
+
+grid = matrix(X, Y, [0]* X*Y)
 
 oscillator = [(0,0),(0,1),(0,2)]
 stillator = [(0,0),(0,1),(1,0),(1,1)]
@@ -32,8 +37,8 @@ while True:
     n_grid = grid.copy()
     for x in range(X):
         for y in range(Y):
-            if grid.get(x, y) is ALIVE:
-                n_grid.set(x, y, int(grid.nb_living_around(x, y) in [2, 3]))
+            if grid.get(x, y):
+                n_grid.set(x, y, grid.nb_living_around(x, y) in [2, 3])
             else:
-                n_grid.set(x, y, int(grid.nb_living_around(x, y) == 3))
+                n_grid.set(x, y, grid.nb_living_around(x, y) == 3)
     grid = n_grid

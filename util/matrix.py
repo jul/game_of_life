@@ -6,10 +6,10 @@ class matrix:
     def as_table(self):
         return self.matrix
     
-    def __init__(self,size_x,size_y, default=0):
+    def __init__(self,size_x,size_y, array_of_mutable):
         self.size_y=size_y
         self.size_x=size_x
-        self.matrix= [ default ] * size_x*size_y
+        self.matrix= array_of_mutable
 
     def get_rand(self):
         from random import randint 
@@ -32,18 +32,21 @@ class matrix:
     def nb_living_around(self,x,y):
         around = [ -1, 0, 1]
 
-        return sum(
-            [ self.get(x+dx,y+dy) for dx in around for dy in around 
-                if (dx,dy) != (0,0) ]
-        )
+        return sum([ 
+            int(self.get(x+dx,y+dy)) for dx in around for dy in around 
+                if (dx,dy) != (0,0) 
+        ])
         
     def set(self,x,y,val):
         self.matrix[self._oneD_offset(x,y)]=val
     
     def copy(self):
-        new_matrix= matrix(self.size_x, self.size_y,0)
-        new_matrix.matrix = [ x for x in self.matrix ]
-        return new_matrix
+        copied_matrix = None
+        if hasattr(self.matrix, "copy"):
+            copied_matrix = self.matrix.copy()
+        else:
+            copied_matrix = [ x for x in self.matrix ] 
+        return matrix(self.size_x, self.size_y,copied_matrix )
     
     def __str__(self):
         to_print="    " 
@@ -54,7 +57,7 @@ class matrix:
                     to_print+="\n%2d " % x
                 cur_val=self.get(x,y)
                 to_print+=" "
-                to_print+="%2s" % ( str( cur_val ) if cur_val else "." )
+                to_print+="%2s" % ( "X" if cur_val else "." )
         return to_print
 
 def matrix_check():
