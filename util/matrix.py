@@ -46,11 +46,10 @@ class matrix:
     def copy(self):
         new_matrix= matrix(self.size_x, self.size_y,0)
         new_matrix.matrix = [ x for x in self.matrix ]
-        print len(new_matrix.matrix)
         return new_matrix
     
     def __str__(self):
-        to_print="   " 
+        to_print="     " 
         to_print+=" ".join([ "%3d" % x for x in range(self.size_y) ])
         for x in range(self.size_x):
             for y in range(self.size_y):
@@ -71,7 +70,6 @@ def matrix_check():
     m.set(2,0,3)
     #mil bas
     m.set(1,1,7)
-    print m._oneD_offset(1,1)
     print(m)
     print(u""" 
 résultat souhaité : 
