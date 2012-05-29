@@ -5,8 +5,9 @@ from time import sleep
 
 X = 12
 Y = 8
-grid = matrix(X, Y, 0)
+grid = matrix(X, Y, DEAD)
 ALIVE = 1
+DEAD = 0
 
 oscill = False
 still = False
@@ -14,23 +15,23 @@ glide = True
 accel = False
 #oscill
 if oscill:
-    grid.set(2, 2, 1)
-    grid.set(3, 2, 1)
-    grid.set(4, 2, 1)
+    grid.set(2, 2, ALIVE)
+    grid.set(3, 2, ALIVE)
+    grid.set(4, 2, ALIVE)
 
 #still
 if still:
     for i in [0, 1]:
         for j in [0, 1]:
-            grid.set(7 + i, 7 + j, 1)
+            grid.set(7 + i, 7 + j, ALIVE)
 
 #glider
 if glide:
-    grid.set(1, 4, 1)
-    grid.set(2, 4, 1)
-    grid.set(3, 4, 1)
-    grid.set(3, 3, 1)
-    grid.set(2, 2, 1)
+    grid.set(1, 4, ALIVE)
+    grid.set(2, 4, ALIVE)
+    grid.set(3, 4, ALIVE)
+    grid.set(3, 3, ALIVE)
+    grid.set(2, 2, ALIVE)
 
 
 for time in range(100):
