@@ -8,11 +8,33 @@ Y = 18
 DEAD = 0
 ALIVE = 1
 
+class Bitmap(object):
+    def __init__(self,_int):
+        self._int = int(_int)
+
+    def __setitem__(self,offset, val):
+        if val:
+            self._int |= 1<<offset
+        else:
+            self._int &= ~(1<<offset)
+
+    def __getitem__(self,offset):
+        return int(bool(self._int & 1<<offset))
+
+    def copy(self):
+        return Bitmap(self._int)
+
+
+
+### All these works ! 
 #grid = matrix(X, Y, bytearray(X*Y))
 #from numpy import array,zeros
 #grid = matrix(X, Y, zeros(X*Y))
-
-grid = matrix(X, Y, [0]* X*Y)
+#grid = matrix(X, Y, [0]* X*Y)
+#from collections import defaultdict
+#grid = matrix(X,Y,defaultdict(int,{}))
+grid = matrix(X,Y,Bitmap(1<<(X*Y)))
+#### end of golf
 
 oscillator = [(0,0),(0,1),(0,2)]
 stillator = [(0,0),(0,1),(1,0),(1,1)]
