@@ -3,8 +3,8 @@ from util.matrix import matrix
 import os
 from time import sleep
 
-X = 12
-Y = 18
+X = 16
+Y = 14
 DEAD = 0
 ALIVE = 1
 
@@ -37,16 +37,16 @@ grid = matrix(X,Y,Bitmap(DEAD))
 #### end of golf
 
 oscillator = [(0,0),(0,1),(0,2)]
-stillator = [(0,0),(0,1),(1,0),(1,1)]
-gliderator = [(0,2),(1,2),(2,2),(2,1),(0,0)]
+still = [(0,0),(0,1),(1,0),(1,1)]
+glider = [(0,2),(1,2),(2,2),(2,1),(0,0)]
 
 def transpose(grid,x,y, pattern):
     for dx,dy in pattern:
         grid.set(x+dx,y+dy,ALIVE)
 
-transpose(grid, 1,8, gliderator)
+transpose(grid, 1,8, glider)
 transpose(grid, 2,3, oscillator)
-transpose(grid, 7,7, stillator)
+transpose(grid, 6,5, still)
 
 time=0
 os.system('clear')
