@@ -30,7 +30,7 @@ class Bitmap(object):
 #grid = matrix(X, Y, bytearray(X*Y))
 #from numpy import array,zeros
 #grid = matrix(X, Y, zeros(X*Y))
-#grid = matrix(X, Y, [0]* X*Y)
+#grid = matrix(X, Y, [DEAD]* X*Y)
 #from collections import defaultdict
 #grid = matrix(X,Y,defaultdict(int,{}))
 grid = matrix(X,Y,Bitmap(DEAD))
