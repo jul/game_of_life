@@ -29,7 +29,7 @@ class matrix:
         """CBP powa"""
         return self.matrix[self._oneD_offset(x,y)]
     
-    def nb_neighbour(self,x,y):
+    def nb_living_around(self,x,y):
         around = [ -1, 0, 1]
 
         return sum(

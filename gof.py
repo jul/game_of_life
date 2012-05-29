@@ -5,9 +5,9 @@ from time import sleep
 
 X = 12
 Y = 8
-grid = matrix(X, Y, DEAD)
-ALIVE = 1
 DEAD = 0
+ALIVE = 1
+grid = matrix(X, Y, DEAD)
 
 oscill = False
 still = False
@@ -44,7 +44,7 @@ for time in range(100):
     for x in range(X):
         for y in range(Y):
             if n_grid.get(x, y) is ALIVE:
-                n_grid.set(x, y, int(grid.nb_neighbour(x, y) in [2, 3]))
+                n_grid.set(x, y, int(grid.nb_living_around(x, y) in [2, 3]))
             else:
-                n_grid.set(x, y, int(grid.nb_neighbour(x, y) == 3))
+                n_grid.set(x, y, int(grid.nb_living_around(x, y) == 3))
     grid = n_grid
