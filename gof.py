@@ -33,7 +33,7 @@ class Bitmap(object):
 #grid = matrix(X, Y, [0]* X*Y)
 #from collections import defaultdict
 #grid = matrix(X,Y,defaultdict(int,{}))
-grid = matrix(X,Y,Bitmap(1<<(X*Y)))
+grid = matrix(X,Y,Bitmap(DEAD))
 #### end of golf
 
 oscillator = [(0,0),(0,1),(0,2)]
