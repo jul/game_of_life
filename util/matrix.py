@@ -55,14 +55,12 @@ class matrix:
             for y in range(self.size_y):
                 if (y==0):
                     to_print+="\n%2d " % x
-                cur_val=self.get(x,y)
-                to_print+=" "
-                to_print+="%2s" % ( "X" if cur_val else "." )
+                to_print+=" %2s" % ( "X" if self.get(x,y) else "." )
         return to_print
 
 def matrix_check():
 #matrice 2x2
-    m=matrix(3,2)
+    m=matrix(3,2, [0]*6)
     # haut à gauche
     m.set(0,0,1)
     # haut mil
@@ -72,10 +70,12 @@ def matrix_check():
     m.set(1,1,7)
     print(m)
     print(u""" 
-résultat souhaité : 
-  0 1 2
-0 1 2 3
-1 X 7 X
+should be: 
+     0  1
+ 0   X  .
+ 1   X  X
+ 2   X  .
+
 """)
 if __name__ == '__main__':
     matrix_check()
