@@ -9,7 +9,8 @@ grid = matrix(X,Y, 0)
 
 oscill = False
 still = False
-glide = False
+glide = True
+accel = False
 #oscill
 if oscill:
     grid.set(2,2,1)
@@ -23,16 +24,20 @@ if still:
             grid.set(7+i,7+j,1)
 
 #glider
-grid.set(1,6,1)
-grid.set(2,6,1)
-grid.set(3,6,1)
-grid.set(3,5,1)
-grid.set(2,4,1)
+if glide:
+    grid.set(1,4,1)
+    grid.set(2,4,1)
+    grid.set(3,4,1)
+    grid.set(3,3,1)
+    grid.set(2,2,1)
 
 
-for time in range(20):
-    os.system('clear')
-    print grid
+for time in range(100):
+    if time %4 == 0 and accel or not accel:
+        os.system('clear')
+        print grid
+        print 'time is  %4d' % time
+        sleep(1)
     n_grid = grid.copy()
     for x in range(X):
         for y in range(Y):
@@ -43,5 +48,4 @@ for time in range(20):
                 ## dead
                 n_grid.set(x,y, int(grid.nb_neighbour(x,y) == 3 ))
     grid=n_grid
-    sleep(1)
 
