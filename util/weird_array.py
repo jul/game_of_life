@@ -9,9 +9,7 @@ class SparseArray(object):
         if val:
             self._set.add(offset)
         else:
-            try:
-                self._set.remove(offset)
-            except: pass
+            self._set.discard(offset)
 
     def __getitem__(self,offset):
         return int(bool(offset in self._set))
