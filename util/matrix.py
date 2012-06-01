@@ -16,10 +16,9 @@ class matrix:
         return self.matrix[ randint(0,self.size_y * self.size_x -1 ) ]
 
     def _oneD_offset(self,ix,iy):
-        x=self.size_x-1 if -1==ix  else ix
-        y=self.size_y-1 if -1==iy  else iy
-        x=0 if ix==self.size_x else x
-        y=0 if iy==self.size_y else y
+        
+        x=ix%self.size_x
+        y=iy%self.size_y
         offset = y*self.size_x+x
         if offset >= self.size_x * self.size_y :
             print "%d(%d), %d(%d) => %d BOOOM"% (x,ix, y,iy, offset)
