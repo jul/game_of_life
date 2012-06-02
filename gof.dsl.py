@@ -2,6 +2,7 @@
 from util.matrix import matrix
 import os
 from time import sleep
+from random import randint
 
 X = 22
 Y = 60
@@ -14,15 +15,23 @@ speed=1.0
 oscillator = [(0,0),(0,1),(0,2)]
 still = [(0,0),(0,1),(1,0),(1,1)]
 glider = [(0,2),(1,2),(2,2),(2,1),(0,0)]
-
-def at(x,y, pattern):
+pixel = [(0,0)]
+all_pattern = [ oscillator, still, glider ]
+def at(x,y, pattern, value=ALIVE):
     global grid
     for dx,dy in pattern:
-        grid.set(x+dx,y+dy,ALIVE)
+        grid.set(x+dx,y+dy,value)
 
 at(1,8, glider)
 at(2,3, oscillator)
 at(6,5, still)
+
+def rand_pattern(times=1):
+    global grid
+    global all_pattern
+    at( randint(0, grid.size_x),randint(0,grid.size_y),all_pattern[
+        randint(0,len(all_pattern)-1)
+    ])
 
 time=0
 def play(times=1):
