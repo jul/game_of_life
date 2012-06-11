@@ -1,5 +1,5 @@
 #!/usr/bin/python
-from util.matrix import matrix
+from gof.matrix import matrix
 import os
 from time import sleep
 
@@ -15,9 +15,9 @@ ALIVE = 1
 #grid = matrix(X, Y, [DEAD]* X*Y)
 #from collections import defaultdict
 #grid = matrix(X,Y,defaultdict(int,{}))
-from util.weird_array import Bitmap, SparseArray
-#grid = matrix(X,Y,Bitmap(DEAD))
-grid = matrix(X,Y,SparseArray(set()))
+from gof.weird_array import Bitmap, SparseArray
+grid = matrix(X,Y,Bitmap(DEAD))
+#grid = matrix(X,Y,SparseArray(set()))
 #### end of golf
 
 oscillator = [(0,0),(0,1),(0,2)]

@@ -48,13 +48,16 @@ class matrix:
         return matrix(self.size_x, self.size_y,copied_matrix )
     
     def __str__(self):
-        to_print="    " 
-        to_print+=" ".join([ "%2d" % x for x in range(self.size_y) ])
+        #to_print="    " 
+        #to_print+=" ".join([ "%2d" % x for x in range(self.size_y) ])
+        to_print=" "
+        to_print+="'    " * (self.size_y/5 )
         for x in range(self.size_x):
             for y in range(self.size_y):
                 if (y==0):
-                    to_print+="\n%2d " % x
-                to_print+=" %2s" % ( "X" if self.get(x,y) else "." )
+                    to_print+='\n ' if x%5 else "\n-"
+                    #to_print+="\n%2d " % x
+                to_print+="%1s" % ( "X" if self.get(x,y) else "." )
         return to_print
 
 def matrix_check():
