@@ -1,0 +1,3 @@
+from .console import *
+
+intro()
