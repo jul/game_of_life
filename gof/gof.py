@@ -45,6 +45,7 @@ def evolve(grid,times=1, speed=1.0):
         grid.time=0
     time = grid.time
     
+    n_grid = grid.duplicate()
     while times:
         times-=1
         time+=1
@@ -53,17 +54,15 @@ def evolve(grid,times=1, speed=1.0):
             print grid
             print "time:<%3d>" % time
             sleep(1.0/speed)
-        n_grid = grid
-
+        
         for x in range(grid.size_x):
             for y in range(grid.size_y):
                 if grid.get(x, y):
                     n_grid.set(x, y, grid.nb_living_around(x, y) in [2, 3])
                 else:
                     n_grid.set(x, y, grid.nb_living_around(x, y) == 3)
-        grid = n_grid
-        if not times:
-            grid = n_grid
+        n_grid.copy_in(grid)
+
 
     grid.time=time
     

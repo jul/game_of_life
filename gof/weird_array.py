@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 class SparseArray(object):
-    def __init__(self,_set):
-        self._set = _set
+    def __init__(self,_set=None):
+        self._set = _set if _set else {0}^{0}
 
     def __setitem__(self,offset, val):
         if val:
@@ -19,8 +19,12 @@ class SparseArray(object):
 
 
 class Bitmap(object):
-    def __init__(self,_int):
-        self._int = int(_int)
+    """array based on an int"""
+    def __init__(self,_int=None):
+        if not _int:
+            raise Exception("Please provide a non null int")
+
+        self._int = _int
 
     def __setitem__(self,offset, val):
         if val:

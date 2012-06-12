@@ -39,13 +39,23 @@ class matrix:
     def set(self,x,y,val):
         self.matrix[self._oneD_offset(x,y)]=val
     
-    def copy(self):
+    def duplicate(self):
+        
         copied_matrix = None
         if hasattr(self.matrix, "copy"):
             copied_matrix = self.matrix.copy()
         else:
             copied_matrix = [ x for x in self.matrix ] 
         return matrix(self.size_x, self.size_y,copied_matrix )
+
+    def copy_in(self,other):
+        if hasattr(self.matrix, "copy"):
+            copied_matrix = self.matrix.copy()
+        else:
+            copied_matrix = [ x for x in self.matrix ] 
+        other.matrix=copied_matrix
+
+        
     
     def __str__(self):
         #to_print="    " 
