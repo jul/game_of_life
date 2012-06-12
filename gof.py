@@ -24,5 +24,5 @@ at(grid, 6,5, still)
 def reset(grid=grid):
     grid.__init__(x,y,Bitmap(ALIVE<<x*y))
 
-evolve(grid, 100,5)
+evolve(grid, 160,5)
 
