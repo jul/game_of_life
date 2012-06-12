@@ -1,7 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+"""facade design pattern to make : set() and int look like a mutable sequence
+of 0 and 1"""
 
 class SparseArray(object):
+    """a mtuable sequence facade for set()"""
     def __init__(self,_set=None):
         self._set = _set if _set else {0}^{0}
 
@@ -19,7 +22,7 @@ class SparseArray(object):
 
 
 class Bitmap(object):
-    """array based on an int"""
+    """bit array view on an int"""
     def __init__(self,_int=None):
         if not _int:
             raise Exception("Please provide a non null int")

@@ -1,11 +1,8 @@
 #!/usr/bin/python
-from gof.matrix import matrix
-from gof.gof import evolve, DEAD,ALIVE, at, all_pattern, glider, oscillator
-from gof.gof import still, pixel,bleach,dirty
 import os
-from time import sleep
+from gof.console import *
 x,y=16,14
-
+speed=5
 ### All these works ! 
 #grid = matrix(x, y, bytearray(x*y))
 #from numpy import array,zeros
@@ -24,5 +21,5 @@ at(grid, 6,5, still)
 def reset(grid=grid):
     grid.__init__(x,y,Bitmap(ALIVE<<x*y))
 
-evolve(grid, 160,5)
+evolve(grid, 160,speed)
 

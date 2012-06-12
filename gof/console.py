@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """Game of Life console. small play ground for leanning python, or just having fun.
 
-To us the console : 
+To use the console : 
     python -mgof.console or bpython -mgof.console 
 
 Avalailble globals : 
@@ -18,26 +18,29 @@ Avalailble globals :
 	interactive python supports it, it will make a continuous animation
 
 * use help(function_name) to know more  yes it is a builtin ^^
-
 """
 from matrix import matrix
 from time import sleep
 from .gof import glider, oscillator, still, pixel, all_pattern
-from .gof import evolve, bleach,dirty, DEAD, ALIVE
+from .gof import evolve, bleach,dirty, DEAD, ALIVE, at
 #### Constants and globals
 __all__ = [ 
-    "matrix",
-    "playground", "sleep","intro", 
+    "matrix","at",
+    "grid", "intro", 
     "glider", "oscillator", "still","pixel","all_pattern",
     "evolve", "bleach", "dirty", "DEAD", "ALIVE" ]
 
 x=10
 y=30
+def intro(): 
+    print __doc__
+    print """
+    you are left with an empty grid of %dx%d to play with, have fun""" % (x,y)
+
 grid=matrix(x,y,x*y*[DEAD])
-sleep=1.0
-def intro(): print __doc__
 
 
 
 if '__main__' == __name__:
     print __doc__
+
