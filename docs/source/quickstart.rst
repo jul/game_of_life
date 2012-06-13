@@ -1,17 +1,19 @@
 Direct in the fun
 =================
 
-First install the package either from github ::
+Quick install
+*************
+First install the package either from github::
     git clone git://github.com/jul/game_of_life.git
 
 And do what you have to do :)
 
-Or ::
+Or::
     pip install gof
 
 I made a package to write less docs.
 
-To dive directly in the core of the topic :: 
+To dive directly in the core of the topic:: 
     python -i -mgof.demo
 
 You'll have a *pseudo* animation (could work on windows, but I am lazy), of a 
@@ -52,14 +54,14 @@ If you want to know more about the grid object::
     >>> help(grid)
 
 It does not tells you : grid.size_x, grid._size_y are attributes  where
-the dimension of the matrix is stored
+the dimension of the matrix are stored.
 
 Now, you want to clean the matrix, to play::
 
     >>> bleach(grid, 20,40)
     >>> print grid
 
-Should show you a nice empty grid
+This should show you a nice empty grid.
 
 Before you play the game of life, you want to draw patterns on your grid. 
 (The one I defined are not exhautive, you can draw your own.)
@@ -92,7 +94,7 @@ and see the result ::
      ........................................
      ........................................
      ........................................
-let's see it evolve ::
+let's see how it evolves ::
     >>> evolve(grid, 10, 5)
 
 not stable yet? Let's play 10 more iterations, slower::

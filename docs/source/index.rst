@@ -10,11 +10,13 @@
 Foreword: Dont Do This at Home ! 
 ================================
 
-.. warning::Please don't
+.. warning::
+    Please don't
+
     * from module import *
     * if you do so (which is bad) don't forget to define __all__
    
-   I guess I have no excuse others than lazyness. But I find so easier to use.
+   I guess I have no excuse others than lazyness. But I find it so easier to use.
 
 
 Pathetic excuse #1
