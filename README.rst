@@ -1,3 +1,8 @@
+complete doc: http://gof.readthedocs.org/en/latest/
+source : https://github.com/jul/game_of_life
+ticketing : https://github.com/jul/game_of_life/issues
+
+
 game_of_life
 ============
 
