@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import os
-from gof.console import *
+from .console import *
 x,y=16,14
 speed=5
 ### All these works ! 
@@ -10,7 +10,7 @@ speed=5
 grid = matrix(x, y, [DEAD]* x*y)
 #from collections import defaultdict
 #grid = matrix(x,y,defaultdict(int,{}))
-from gof.weird_array import Bitmap, SparseArray
+from .weird_array import Bitmap, SparseArray
 #grid = matrix(x,y,Bitmap(ALIVE<<x*y))
 #grid = matrix(x,y,SparseArray(set()))
 

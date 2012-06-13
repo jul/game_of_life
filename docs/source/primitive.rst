@@ -8,11 +8,8 @@ Global *evil* variables
 
 * DEAD or ALIVE : because True and False are too mainstream;
 * grid : your playground;
-* time : the number of time the game of life was played;
-* X,Y the size of the grid;
 * pixel : the pattern to draw a pixel;
 * oscillator, still, glider : a non exhaustive list of singular patterns in game
-* speed : the higher the variable the faster the animation
 
 Global *evil* function
 **********************
@@ -25,40 +22,37 @@ A cheat sheet of the console
 
 help
 ----
-
+It is a builtin of python interpreter.
 Abuse it, this one might be useful:: 
 
     >>> help grid
 
 
-bleach(x=Y, Y=Y, atlernative_empty_mutable_array=X*Y*[DEAD])
+bleach(grid, x, y, atlernative_empty_mutable_array=x*y*[DEAD])
 ----------------
 
-Cleans the **evil global variable grid** of any living cells, and set time to 0
+Cleans the grid of any living cells, and set time to 0
 
-if X and/or Y is specified, resize the grid. 
+if X and Y is specified, resize the grid. 
 
-at( x,y ,pattern=pixel, state=ALIVE)
+You can specify an alternative 1D sequence of mutable as a backend. Just
+remember to allocate enough space.
+
+at(grid, x,y ,pattern=pixel, state=ALIVE)
 ------------------------------
 
-Set at the position x,y the pattern given as an argument in the 
-**evil global variable grid**. 
+Set at the position x,y the pattern given as an argument in the grid
 
 
-schmutzig(times=1)
+dirty(times=1, list_of_pattern)
 ------------------
 
 Set one random pattern at a random position in the grid.
 
-play(time=100, show=True)
+evolve(grid, time=100,speed )
 -------------------------
 
-Make the grid evolve n times according to Conway's Rules. If show is True 
-(default value) all states are printed, else you will need to type ::
-    >>> print grid
-
-to have a result.
-
-
-
+Make the grid evolve n times according to Conway's Rules. Default speed
+is waiting 1sec after each print. If speed is "unseeable" then, It will
+evolve quietly at full speed. 
 

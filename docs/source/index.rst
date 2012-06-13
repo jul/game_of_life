@@ -12,7 +12,7 @@ Foreword: Dont Do This at Home !
 
 .. warning::Please don't
     * from module import *
-    * define variable globally
+    * if you do so (which is bad) don't forget to define __all__
    
    I guess I have no excuse others than lazyness. But I find so easier to use.
 
@@ -42,6 +42,7 @@ Game of life is a serious game
 Contents:
 
 .. toctree::
+   quickstart
    install
    primitive
    :maxdepth: 2

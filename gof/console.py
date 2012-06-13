@@ -1,23 +1,34 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""Game of Life console. small play ground for leanning python, or just having fun.
+"""Game of Life console. 
+small play ground for leanning python, or just having fun.
 
-To use the console : 
-    python -mgof.console or bpython -mgof.console 
+To use the console with an empty grid: 
+    python -i -mgof.console
+or
+    bpython -i -mgof.console
 
-Avalailble globals : 
-* X, Y the size of the grid
+To use the console with a pseudo animation: 
+    python -i -mgof.demo
+
+Avalailble variable : 
+* grid your playground a matrix of cellular automata
+* patterns : pixel, still, oscillator, glider
+    they are singular patterns to play with in game of life.
+* all_pattern : a list of all patterns (except pixel)
+* matrix : the class name of grid is imported for educationnal purpose
+* DEAD, ALIVE
+
+Available functions:
+* intro() : a short summary of all available functions
 * bleach(...) a function to init the grid
-* grid your *empty* grid where game of life will evolve. print grid to sse it
-* time : current iteration
-* speed : speed for pseudo animation
-* schmutzig : a list of pre-stored regular pattern
 * at(...) a function to draw a pattern on the grid
 * rand_pattern() : a function to add random pattern in your grid
-* play(...) make the game evolve for some time. If your terminal and/or 
+* evolve(...) make the game evolve for some time. If your terminal and/or 
 	interactive python supports it, it will make a continuous animation
 
-* use help(function_name) to know more  yes it is a builtin ^^
+* use help(function_name) to know more  yes it is a builtin ^_^
+
 """
 from matrix import matrix
 from time import sleep
