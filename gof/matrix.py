@@ -1,8 +1,38 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+from random import randint
 """a 2D accessor for 1 dimensional array, which is backend agnostic.
 you need a MutableSequence as a constructor
 """
+def ift(p, vt, vf):
+    return lambda val: (ift(*vt)(val) if isinstance(vt, tuple) else vt) \
+        if p(val) else (ift(*vf)(val) if isinstance(vf, tuple) else vf)
+
+compile_nbit = lambda nbit: lambda f: sum([int(f(n))<<n for n in range(1<<nbit)])
+compile = compile_nbit(9)
+hamming = lambda x: sum([ (x>>i)&1 for i in range(x.bit_length()) ])
+interpret = lambda code: lambda val: int((1<<(val))&code != 0)
+conway_prog= ift(
+    lambda x: (x&1) == 1,
+        (lambda y:3 <= hamming(y) <= 4, 1, 0),
+        (lambda z:hamming(z)       ==3, 1, 0),
+)
+assert conway_prog(7)
+
+conway_code = compile(conway_prog)
+conway = interpret(conway_code)
+assert hamming(3) == 2
+assert hamming(1) == 1
+assert hamming(7) == 3
+assert hamming(0b01111) == 4
+assert conway(0b00001) == 0
+assert conway_code
+assert conway(0b01111) == 1
+assert conway(0b11111) == 0
+assert conway(0b11110) == 0
+assert conway(0b11100) == 1
+assert conway(0b10101) == 1
+
 class matrix:
 
     def __init__(self,size_x,size_y, mutable_sequence):
@@ -11,7 +41,14 @@ class matrix:
         """
         self.size_y=size_y
         self.size_x=size_x
+        self._compute = conway
+        self._code = conway_code
         self.matrix= mutable_sequence
+
+    def mutate(self, nb_flip=1):
+        for i in range(nb_flip):
+            self._code = self._code^(1<<randint(0,self._code.bit_length()-1))
+        self._compute=interpret(self._code)
 
     def get_rand(self):
         from random import randint 
@@ -29,17 +66,20 @@ class matrix:
     def get(self,x,y):
         """get item at coordinates x,y"""
         return self.matrix[self._oneD_offset(x,y)]
-    
-    def nb_living_around(self,x,y):
+   
+    def map_neighbor_to_int(self,x,y):
         """mis placed method
         TODO correct it one day"""
-        around = [ -1, 0, 1]
+        # LSB counting of neighbors (self is bit 0 , north bit 1 .....)
+        ordered_neighbors= [    (0,0), 
+            (0,1),(-1,1),(-1,0),(-1,-1), (0,-1),(1,-1), (1,0), (1,1)]
 
-        return sum([ 
-            int(self.get(x+dx,y+dy)) for dx in around for dy in around 
-                if (dx,dy) != (0,0) 
+        return sum([
+            int(not(not(self.get(x+dx,y+dy))))<<i for i,(dx, dy) in enumerate(ordered_neighbors)
         ])
-        
+    def compute_state(self,x, y):
+        return self._compute(self.map_neighbor_to_int(x,y))
+
     def set(self,x,y,val):
         """set value val at coordinates x, y"""
         self.matrix[self._oneD_offset(x,y)]=val
@@ -86,6 +126,8 @@ def matrix_check():
     #mil bas
     m.set(1,1,7)
     print(m)
+    print(bin(m.map_neighbor_to_int(0,1)))
+    print(bin(m.map_neighbor_to_int(0,0)))
     print(u""" 
 should be: 
      0  1

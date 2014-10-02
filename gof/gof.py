@@ -59,10 +59,7 @@ def evolve(grid,times=1, speed=1.0):
         
         for x in range(grid.size_x):
             for y in range(grid.size_y):
-                if grid.get(x, y):
-                    n_grid.set(x, y, grid.nb_living_around(x, y) in [2, 3])
-                else:
-                    n_grid.set(x, y, grid.nb_living_around(x, y) == 3)
+                n_grid.set(x, y, grid.compute_state(x,y))
         n_grid.copy_in(grid)
 
 
@@ -90,5 +87,4 @@ def bleach(grid, x,y,empty_matrix=None):
         empty_matrix=x*y*[DEAD]
     grid.__init__(x,y, empty_matrix)
     grid.time=0
-
 

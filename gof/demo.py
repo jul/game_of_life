@@ -7,11 +7,11 @@ speed=5
 #grid = matrix(x, y, bytearray(x*y))
 #from numpy import array,zeros
 #grid = matrix(x, y, zeros(x*y))
-grid = matrix(x, y, [DEAD]* x*y)
+#grid = matrix(x, y, [DEAD]* x*y)
 #from collections import defaultdict
 #grid = matrix(x,y,defaultdict(int,{}))
 from .weird_array import Bitmap, SparseArray
-#grid = matrix(x,y,Bitmap(ALIVE<<x*y))
+grid = matrix(x,y,Bitmap(ALIVE<<x*y))
 #grid = matrix(x,y,SparseArray(set()))
 
 at(grid, 3,9, glider)

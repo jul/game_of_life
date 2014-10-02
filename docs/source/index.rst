@@ -56,6 +56,12 @@ v0.1.0
     * usable console
     * pypi package, because it make doc shorter.
 
+v0.1.1
+   * spotted a bug in reset (TOFIX)
+   * default backend is hint
+   * changed the code so that conway rules are only a turing machine encoded as an int
+   * added the grid.mutate(nb_flip=n) that flip randomly nbits in the conway code
+
 
 Indices and tables
 ==================
