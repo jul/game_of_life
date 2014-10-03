@@ -8,7 +8,7 @@ def test():
     """Specialized Python source builder."""
 setup(
         name='gof',
-        version='0.1.1',
+        version='0.1.2',
         author='Julien Tayon',
         author_email='julien@tayon.net',
         packages=['gof'],

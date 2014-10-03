@@ -40,6 +40,13 @@ fun.
 Since you use *python -i* at the end of the demo you are left with an
 interactive session
 
+*New*: 
+    ipython -i mgof.demo2
+
+A console for seeing what happens if you change 5 bits of the turing machine 
+describing a conway rule. 
+
+
 Quick tour
 **********
 

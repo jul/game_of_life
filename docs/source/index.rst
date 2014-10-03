@@ -62,6 +62,8 @@ v0.1.1
    * changed the code so that conway rules are only a turing machine encoded as an int
    * added the grid.mutate(nb_flip=n) that flip randomly nbits in the conway code
 
+v 0.1.2
+   * Added another demo demo2 to show the result of flipping n bit on a cellular automata
 
 Indices and tables
 ==================

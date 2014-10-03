@@ -44,6 +44,7 @@ class matrix:
         self._compute = conway
         self._code = conway_code
         self.matrix= mutable_sequence
+        self.pattern = [ ".", "X" ]
 
     def mutate(self, nb_flip=1):
         for i in range(nb_flip):
@@ -112,7 +113,7 @@ class matrix:
             for y in range(self.size_y):
                 if (y==0):
                     to_print+='\n ' if x%5 else "\n-"
-                to_print+="%1s" % ( "X" if self.get(x,y) else "." )
+                to_print+="%1s" % ( self.pattern[self.get(x,y)] )
         return to_print
 
 def matrix_check():
