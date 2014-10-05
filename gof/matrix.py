@@ -4,6 +4,7 @@ from random import randint
 """a 2D accessor for 1 dimensional array, which is backend agnostic.
 you need a MutableSequence as a constructor
 """
+from .weird_array import Bitmap
 def ift(p, vt, vf):
     return lambda val: (ift(*vt)(val) if isinstance(vt, tuple) else vt) \
         if p(val) else (ift(*vf)(val) if isinstance(vf, tuple) else vf)
@@ -18,8 +19,28 @@ conway_prog= ift(
         (lambda z:hamming(z)       ==3, 1, 0),
 )
 assert conway_prog(7)
-
+conway_prog2=ift(
+    lambda y: hamming(y&~1)==3,
+        1,
+        (lambda z:(z&1)&(hamming(z&~1)==2), 1, 0
+        )
+)
+conway_prog3=ift(
+    lambda x: x&1,
+    ( lambda y: hamming(y&~1)==3,
+        1,
+        ( lambda y: hamming(y&~1)==2,1,0),
+    ),
+    ( lambda t: hamming(t&~1)==3,1,0),
+)
 conway_code = compile(conway_prog)
+code_arr=Bitmap(conway_code)
+for i in range(12,123):
+    assert conway_prog(i) == code_arr[i]
+
+
+assert compile(conway_prog) == compile(conway_prog2)
+assert compile(conway_prog) == compile(conway_prog3)
 conway = interpret(conway_code)
 assert hamming(3) == 2
 assert hamming(1) == 1
@@ -52,22 +73,21 @@ class matrix:
         self._compute=interpret(self._code)
 
     def get_rand(self):
-        from random import randint 
+        from random import randint
         return self.matrix[ randint(0,self.size_y * self.size_x -1 ) ]
 
     def _oneD_offset(self,ix,iy):
-        
         x=ix%self.size_x
         y=iy%self.size_y
         offset = y*self.size_x+x
         if offset >= self.size_x * self.size_y :
             print "%d(%d), %d(%d) => %d BOOOM"% (x,ix, y,iy, offset)
         return offset
-        
+
     def get(self,x,y):
         """get item at coordinates x,y"""
         return self.matrix[self._oneD_offset(x,y)]
-   
+
     def map_neighbor_to_int(self,x,y):
         """mis placed method
         TODO correct it one day"""
@@ -84,10 +104,8 @@ class matrix:
     def set(self,x,y,val):
         """set value val at coordinates x, y"""
         self.matrix[self._oneD_offset(x,y)]=val
-    
     def duplicate(self):
         """return a copy of itself. Maybe copy would be a better name ? """
-        
         copied_matrix = None
         if hasattr(self.matrix, "copy"):
             copied_matrix = self.matrix.copy()
@@ -103,8 +121,6 @@ class matrix:
             copied_matrix = [ x for x in self.matrix ] 
         other.matrix=copied_matrix
 
-        
-    
     def __str__(self):
         """poor man's amazing graphical effects:)"""
         to_print=" "

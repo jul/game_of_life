@@ -28,7 +28,7 @@ grid_p.mutate(5)
 grid_f = matrix(x, y, [DEAD]* x*y)
 grid_f.pattern = [ " ", "x" , "." , "X" ]
 print grid_f
-for frame in range(200):
+for frame in range(20):
     evolve(grid, 1,"unseeable")
     evolve(grid_p, 1,"unseeable")
 
@@ -40,3 +40,12 @@ for frame in range(200):
     print "time is %d" % grid.time
     print "pertubation %d"  % (hamming(grid.matrix._int^grid_p.matrix._int))
     sleep(.2)
+
+rstr = lambda s: "".join(reversed([ c for c in s ]))
+z=str(bin(grid._code ^ grid_p._code))[2:]
+y=str(bin(grid_p._code))[2:]
+w=str(bin(grid._code))[2:]
+w, y, z = map(rstr,(w, y, z))
+#print "diff"
+#print "\n".join([ "\t".join([w[x:x+9], y[x:x+9],z[x:x+9].replace("0"," ")]) for x in range(0,max(len(w),len(y),len(z)),9) ])
+
