@@ -66,6 +66,7 @@ class matrix:
         self._code = conway_code
         self.matrix= mutable_sequence
         self.pattern = [ ".", "X" ]
+        self.cnx=self.matrix
 
     def mutate(self, nb_flip=1):
         for i in range(nb_flip):
@@ -98,12 +99,14 @@ class matrix:
         return sum([
             int(not(not(self.get(x+dx,y+dy))))<<i for i,(dx, dy) in enumerate(ordered_neighbors)
         ])
+
     def compute_state(self,x, y):
         return self._compute(self.map_neighbor_to_int(x,y))
 
     def set(self,x,y,val):
         """set value val at coordinates x, y"""
         self.matrix[self._oneD_offset(x,y)]=val
+
     def duplicate(self):
         """return a copy of itself. Maybe copy would be a better name ? """
         copied_matrix = None
@@ -129,7 +132,8 @@ class matrix:
             for y in range(self.size_y):
                 if (y==0):
                     to_print+='\n ' if x%5 else "\n-"
-                to_print+="%1s" % ( self.pattern[self.get(x,y)] )
+                #import pdb;pdb.set_trace()
+                to_print+="%1s%s" % ( self.pattern[self.get(x,y)],(" " ,"|")[self.get(x,y)])
         return to_print
 
 def matrix_check():
@@ -138,10 +142,10 @@ def matrix_check():
     # haut à gauche
     m.set(0,0,1)
     # haut mil
-    m.set(1,0,2)
-    m.set(2,0,3)
+    m.set(1,0,1)
+    m.set(2,0,1)
     #mil bas
-    m.set(1,1,7)
+    m.set(1,1,1)
     print(m)
     print(bin(m.map_neighbor_to_int(0,1)))
     print(bin(m.map_neighbor_to_int(0,0)))
