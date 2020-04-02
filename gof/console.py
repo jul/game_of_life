@@ -30,7 +30,7 @@ Available functions:
 * use help(function_name) to know more  yes it is a builtin ^_^
 
 """
-from matrix import matrix
+from .matrix import matrix
 from time import sleep
 from .gof import glider, oscillator, still, pixel, all_pattern
 from .gof import evolve, bleach,dirty, DEAD, ALIVE, at
@@ -43,15 +43,15 @@ __all__ = [
 
 x=10
 y=30
-def intro(): 
-    print __doc__
-    print """
-    you are left with an empty grid of %dx%d to play with, have fun""" % (x,y)
+def intro():
+    print(__doc__)
+    print("""
+    you are left with an empty grid of %dx%d to play with, have fun""" % (x,y))
 
 grid=matrix(x,y,x*y*[DEAD])
 
 
 
 if '__main__' == __name__:
-    print __doc__
+    print(__doc__)
 

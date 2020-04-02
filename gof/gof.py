@@ -46,25 +46,24 @@ def evolve(grid,times=1, speed=1.0):
     if not hasattr(grid,'time'):
         grid.time=0
     time = grid.time
-    
+
     n_grid = grid.duplicate()
     while times:
         times-=1
         time+=1
         if 'unseeable' != speed:
             os.system('clear')
-            print grid
-            print "time:<%3d>" % time
+            print(grid)
+            print( "time:<%3d>" % time)
             sleep(1.0/speed)
-        
+
         for x in range(grid.size_x):
             for y in range(grid.size_y):
                 n_grid.set(x, y, grid.compute_state(x,y))
         n_grid.copy_in(grid)
 
-
     grid.time=time
-    
+
 
 
 def bleach(grid, x,y,empty_matrix=None):

@@ -81,7 +81,7 @@ class matrix:
         y=iy%self.size_y
         offset = y*self.size_x+x
         if offset >= self.size_x * self.size_y :
-            print "%d(%d), %d(%d) => %d BOOOM"% (x,ix, y,iy, offset)
+            print("%d(%d), %d(%d) => %d BOOOM"% (x,ix, y,iy, offset))
         return offset
 
     def get(self,x,y):
@@ -124,7 +124,7 @@ class matrix:
     def __str__(self):
         """poor man's amazing graphical effects:)"""
         to_print=" "
-        to_print+="'    " * (self.size_y/5 )
+        to_print+="'    " * (self.size_y//5 )
         for x in range(self.size_x):
             for y in range(self.size_y):
                 if (y==0):
