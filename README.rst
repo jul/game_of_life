@@ -2,6 +2,10 @@ complete doc: http://gof.readthedocs.org/en/latest/
 source : https://github.com/jul/game_of_life
 ticketing : https://github.com/jul/game_of_life/issues
 
+Changelog
+=========
+
+0.1.3: Python3 conversion
 
 game_of_life
 ============
