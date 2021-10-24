@@ -128,12 +128,13 @@ class matrix:
         """poor man's amazing graphical effects:)"""
         to_print=" "
         to_print+="'    " * (self.size_y//5 )
+
         for x in range(self.size_x):
             for y in range(self.size_y):
                 if (y==0):
                     to_print+='\n ' if x%5 else "\n-"
-                #import pdb;pdb.set_trace()
-                to_print+="%1s%s" % ( self.pattern[self.get(x,y)],(" " ,"|")[self.get(x,y)])
+                # import pdb;pdb.set_trace()
+                to_print+="%1s%s" % ( self.pattern[self.get(x,y)],(" " ,"|")[bool(self.get(x,y))])
         return to_print
 
 def matrix_check():
