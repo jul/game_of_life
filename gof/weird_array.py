@@ -6,8 +6,7 @@ of 0 and 1"""
 class SparseArray(object):
     """a mtuable sequence facade for set()"""
     def __init__(self,_set=None):
-        self._set = _set if _set else {0}^{0}
-
+        self._set = ({*()}, _set)[bool(_set)]
     def __setitem__(self,offset, val):
         if val:
             self._set.add(offset)
